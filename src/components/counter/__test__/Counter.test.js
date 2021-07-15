@@ -5,57 +5,44 @@ test('heading with text of counter', () => {
     // arrange
     render(<Counter />);
 
-    // act
-    const header = screen.getByText(/counter/i);
-
     // assertion
-    expect(header).toHaveTextContent('Counter');
+    expect(screen.getByText(/counter/i)).toHaveTextContent('Counter');
 });
 
 test('counter with text of 0', () => {
     render(<Counter />);
 
-    const counter = screen.getByText(/0/i);
-
-    expect(counter).toHaveTextContent('0');
+    expect(screen.getByText(/0/i)).toHaveTextContent('0');
 });
 
 test('subtract button with text of -', () => {
     render(<Counter />);
 
-    const subtractBtn = screen.getByRole('button', { name: /-/i });
-
-    expect(subtractBtn).toHaveTextContent('-');
+    expect(screen.getByRole('button', { name: /\-/i })).toHaveTextContent('-');
 });
 
 test('input field with value of 1', () => {
     render(<Counter />);
 
-    const input = screen.getByLabelText('Count');
-
-    expect(input).toHaveValue(1);
+    expect(screen.getByLabelText('Count')).toHaveValue(1);
 });
 
 test('add button with text of +', () => {
     render(<Counter />);
 
-    const addBtn = screen.getByRole('button', { name: /\+/i });
-
-    expect(addBtn).toHaveTextContent('+');
+    expect(screen.getByRole('button', { name: /\+/i })).toHaveTextContent('+');
 });
 
 test('change input value', () => {
     render(<Counter />);
 
-    const input = screen.getByLabelText('Count');
-
-    fireEvent.change(input, {
+    fireEvent.change(screen.getByLabelText('Count'), {
         target: {
             value: '5',
         },
     });
 
-    expect(input).toHaveValue(5);
+    expect(screen.getByLabelText('Count')).toHaveValue(5);
 });
 
 test('add button increment counter based on value', () => {
